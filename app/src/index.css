@@ -12,21 +12,23 @@ code {
     monospace;
 }
 
-.site-layout-content {
-  min-height: 100%;
-  padding: 24px;
-  background: #fff;
+/* layout */
+.layout {
+  min-height: 100vh;
+  background-color: #fff;
 }
 
-#components-layout-demo-top .logo {
-  float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+main {
+  padding: 25px 50px;
 }
 
-.ant-row-rtl #components-layout-demo-top .logo {
-  float: right;
-  margin: 16px 0 16px 24px;
+header {
+  position: sticky;
+  top: 0;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  text-align: center;
 }
