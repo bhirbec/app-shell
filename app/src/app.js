@@ -1,5 +1,5 @@
 import { Layout, Menu } from 'antd';
-import Signin from './signin';
+import {Signin, Signout} from './signin';
 
 import 'antd/dist/antd.css';
 import './index.css';
@@ -12,7 +12,8 @@ function App(props) {
       <Header>
         {props.user !== null && (
           <Menu theme="dark" mode="horizontal">
-            <Menu.Item key="1">Nav 1</Menu.Item>
+            <Menu.Item key="1">Nav</Menu.Item>
+            <Menu.Item key="2"><Signout /></Menu.Item>
           </Menu>
         )}
       </Header>

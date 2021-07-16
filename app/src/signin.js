@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 
 import 'firebaseui/dist/firebaseui.css';
 
-function Signin() {
+export function Signin() {
   useEffect(() => {
     var firebaseui = require('firebaseui');
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -20,4 +20,11 @@ function Signin() {
   return <div id="firebaseui-auth"></div>;
 }
 
-export default Signin
+export function Signout() {
+  const onClick = (e) => {
+    firebase.auth().signOut();
+    e.preventDefault();
+  }
+
+  return <a href="#" onClick={onClick}>Signout</a>
+}
