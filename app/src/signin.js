@@ -1,19 +1,32 @@
 import { useEffect } from 'react';
+import { Redirect, useLocation } from "react-router-dom";
 import firebase from "firebase/app";
 
 import 'firebaseui/dist/firebaseui.css';
 
+export function RedirectToSignin() {
+  let location = useLocation();
+
+  return <Redirect to={{
+    pathname: '/signin',
+    state: {from: location.pathname + location.search }
+  }} />
+}
+
 export function Signin() {
+  let loc = useLocation();
+  let successUrl = (loc.state || {})['from'] || '/';
+
   useEffect(() => {
-    var firebaseui = require('firebaseui');
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    let firebaseui = require('firebaseui');
+    let ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
 
     ui.start('#firebaseui-auth', {
       signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       ],
       signInFlow: 'popup',
-      signInSuccessUrl: '/',
+      signInSuccessUrl: successUrl,
     });
   });
 
