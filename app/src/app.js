@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 
-import {Signin, Signout, RedirectToSignin} from './signin';
+import {Signin, Signout, AuthenticatedRoute} from './auth';
 
 import 'antd/dist/antd.css';
 import './index.css';
@@ -36,32 +36,21 @@ function App(props) {
         </Header>
         <Content>
           <Switch>
+            <AuthenticatedRoute exact path="/">
+              <div>Home page</div>
+            </AuthenticatedRoute>
+            <AuthenticatedRoute exact path="/about">
+              <div>About page</div>
+            </AuthenticatedRoute>
+            <AuthenticatedRoute exact path="/contact">
+              <div>Contact page</div>
+            </AuthenticatedRoute>
             <Route path="/signin">
               <Signin />
             </Route>
-            {props.user === null && (
-              <RedirectToSignin />
-            )}
-            {props.user !== null && (
-              <Route exact path="/">
-                <div>Home page</div>
-              </Route>
-            )}
-            {props.user !== null && (
-              <Route exact path="/about">
-                <div>About page</div>
-              </Route>
-            )}
-            {props.user !== null && (
-              <Route exact path="/contact">
-                <div>Contact page</div>
-              </Route>
-            )}
-            {props.user !== null && (
-              <Route path="*">
-                <div>Not found page</div>
-              </Route>
-            )}
+            <AuthenticatedRoute path="*">
+              <div>Not found page</div>
+            </AuthenticatedRoute>
           </Switch>
         </Content>
       </Router>

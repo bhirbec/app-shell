@@ -1,16 +1,31 @@
 import { useEffect } from 'react';
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect, Route, useLocation } from "react-router-dom";
 import firebase from "firebase/app";
 
 import 'firebaseui/dist/firebaseui.css';
 
-export function RedirectToSignin() {
-  let location = useLocation();
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+export function AuthenticatedRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) => {
+        const user = firebase.auth().currentUser;
 
-  return <Redirect to={{
-    pathname: '/signin',
-    state: {from: location.pathname + location.search }
-  }} />
+        if (user === null) {
+          return <Redirect
+            to={{
+              pathname: "/signin",
+              state: { from: location.pathname + location.search }
+            }}
+          />;
+        } else {
+          return children;
+        }
+      }}
+    />
+  );
 }
 
 export function Signin() {
