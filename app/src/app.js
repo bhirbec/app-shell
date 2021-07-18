@@ -55,7 +55,7 @@ function App(props) {
         </Content>
       </Router>
       <Footer>
-        Retro Tool ©2021
+        Your Tool ©2021
       </Footer>
     </Layout>
   );
