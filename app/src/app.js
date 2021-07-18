@@ -22,7 +22,7 @@ function App(props) {
           {props.user !== null && (
             <Menu theme="dark" mode="horizontal">
               <Menu.Item key="1">
-                <Link to="/">Home</Link>
+                <Link to="/home">Home</Link>
               </Menu.Item>
               <Menu.Item key="2">
                 <Link to="/about">About</Link>
@@ -36,7 +36,7 @@ function App(props) {
         </Header>
         <Content>
           <Switch>
-            <AuthenticatedRoute exact path="/">
+            <AuthenticatedRoute exact path="/home">
               <div>Home page</div>
             </AuthenticatedRoute>
             <AuthenticatedRoute exact path="/about">

@@ -12,12 +12,13 @@ export function AuthenticatedRoute({ children, ...rest }) {
       {...rest}
       render={({ location }) => {
         const user = firebase.auth().currentUser;
+        const loc = location.pathname + location.search;
 
         if (user === null) {
           return <Redirect
             to={{
               pathname: "/signin",
-              state: { from: location.pathname + location.search }
+              state: { from: loc }
             }}
           />;
         } else {
@@ -30,9 +31,13 @@ export function AuthenticatedRoute({ children, ...rest }) {
 
 export function Signin() {
   let loc = useLocation();
-  let successUrl = (loc.state || {})['from'] || '/';
+  const stateUrl = (loc.state || {})['from'] || '/';
+  const successUrl = stateUrl === '/' ? '/home' : stateUrl;
+  const user = firebase.auth().currentUser;
 
   useEffect(() => {
+    if (user !== null) { return }
+
     let firebaseui = require('firebaseui');
     let ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
 
@@ -45,13 +50,17 @@ export function Signin() {
     });
   });
 
-  return <div id="firebaseui-auth"></div>;
+  if (user === null) {
+    return <div id="firebaseui-auth"></div>;
+  } else {
+    return <Redirect to={successUrl} />;
+  }
 }
 
 export function Signout() {
   const onClick = (e) => {
-    firebase.auth().signOut();
     e.preventDefault();
+    firebase.auth().signOut();
   }
 
   return <a href="#" onClick={onClick}>Signout</a>
