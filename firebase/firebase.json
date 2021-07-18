@@ -10,6 +10,13 @@
   },
   "hosting": {
     "public": "public",
+    "rewrites": [{
+      "source": "/",
+      "destination": "/index.html"
+    },{
+      "source": "**",
+      "destination": "/app.html"
+    }],
     "ignore": [
       "firebase.json",
       "**/.*",

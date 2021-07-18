@@ -7,7 +7,17 @@ Build app
 $ yarn --cwd app build
 
 Copy result of the build in public folder
-$ cp -r app/build/* firebase/public/
+$ rsync -rv app/build/* firebase/public/
+
+Build home
+$ yarn --cwd home build
+
+Copy result of the build in public folder
+$ rsync -rv home/public/* firebase/public/
 
 Deploy on firebase hosting
 $ firebase deploy -c firebase/firebase.json --only hosting
+
+# clean
+
+find ./firebase/public/* -print0 | xargs -0 rm -rf --
