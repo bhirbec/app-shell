@@ -18,9 +18,5 @@ REACT_APP_MEASUREMENT_ID=""
 Install firebase CLI:
 https://firebase.google.com/docs/cli#install-cli-mac-linux
 
-Initialize firebase app in `hosting`:
-$ mkdir -p hosting
-$ firebase init hosting
-
 Run deploy script
 $ ./deploy.sh
