@@ -15,7 +15,7 @@ REACT_APP_MEASUREMENT_ID=""
 
 # Deploy
 
-Install firebase CLI:
+Install Firebase CLI:
 https://firebase.google.com/docs/cli#install-cli-mac-linux
 
 Run deploy script
