@@ -7,8 +7,7 @@ import App from './app';
 import reportWebVitals from './reportWebVitals';
 
 // Initialize Firebase
-import config from './config';
-firebase.initializeApp(config);
+firebase.initializeApp(window.firebaseConfig);
 
 firebase.auth().onAuthStateChanged((user) => {
   // Render the app
