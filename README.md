@@ -32,6 +32,16 @@ $ yarn start
 
 ## Setup
 
+Install [Firebase CLI](https://firebase.google.com/docs/cli) 
+```shell
+npm install -g firebase-tools
+```
+
+And log in to Firebase
+```shell
+firebase login
+```
+
 Initialize Firebase Hosting in a new `hosting` folder
 ```
 $ mkdir -p hosting
